@@ -1,0 +1,105 @@
+{
+  "name": "test-hello-js",
+  "displayName": "test_Hello_js",
+  "description": "test extension in js",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+
+  "contributes": {
+    "commands": [
+      {
+        "command": "test-hello-js.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "test-hello-js.helloWorld2",
+        "title": "Hello World 2"
+      },
+      {
+        "command": "test-hello-js.helloWorld3",
+        "title": "Hello World 3"
+      },
+      {
+        "command": "test-hello-js.helloWorld4",
+        "title": "Hello World 4"
+      }
+    ],
+    "configuration":[
+      {
+        "title": "test_Hello_js",
+        "properties": {
+          "test_Hello_js.username":{
+            "type":"string",
+            "default":"username",
+            "description": "用户名"
+          },
+          "test_Hello_js.shotTip":{
+            "type":"boolean",
+            "default":true,
+            "description": "启动时显示提示"
+          }
+        }
+      }
+    ],
+    "keybindings":{
+      "command": "test-hello-js.helloWorld",
+      "key": "alt+q",
+      "mac": "alt+q",
+      "when": "editorTextFocus"
+    },
+    "menus": {
+      "editor/context": [
+          {
+              "when": "editorFocus",
+              "command": "test-hello-js.helloWorld",
+              "group": "navigation@3"
+          },
+          {
+              "when": "editorFocus",
+              "command": "test-hello-js.helloWorld2",
+              "group": "navigation@4"
+          },
+          {
+              "when": "editorFocus && resourceLangId == lua",
+              "command": "test-hello-js.helloWorld3",
+              "group": "z_commands"
+          },
+          {
+              "command": "test-hello-js.helloWorld4",
+              "group": "navigation@7"
+          }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./snippets/lua.json"
+      }
+    ]
+  },
+
+
+
+
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.86.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}

@@ -1,0 +1,92 @@
+{
+	"name": "PrivateCodeTemplate",
+	"displayName": "个人代码模板",
+	"description": "从设置的路径读取代码模板文件，并插入",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./extension.js",
+
+	
+	"contributes": {
+		"commands": [
+			{
+				"command": "PrivateCodeTemplate.helloWorld",
+				"title": "个人模板插件：helloWorld"
+			},
+			{
+				"command": "PrivateCodeTemplate.test",
+				"title": "个人模板插件：测试cmd"
+			},
+			{
+				"command": "PrivateCodeTemplate.insertTemplate",
+				"title": "个人模板插件：插入模板"
+			}
+		],
+		"configuration":[
+			{
+				"title": "PrivateCodeTemplate",
+				"properties": {
+					"PrivateCodeTemplate.userName":{
+						"type":"string",
+						"default":"userName",
+						"description": "用户名"
+					},
+					"PrivateCodeTemplate.templateFolderPath":{
+						"type":"string",
+						"default":"",
+						"description": "读取模板的路径"
+					},
+					"PrivateCodeTemplate.defaultFileType":{
+						"type":"string",
+						"default":".txt",
+						"description": "模板文件的后缀"
+					}
+				}
+			}
+		],
+		"keybindings":[
+			{
+				"command": "PrivateCodeTemplate.insertTemplate",
+				"key": "alt+w",
+				"mac": "alt+w",
+				"when": "editorFocus"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "PrivateCodeTemplate.test",
+					"group": "1_modification@3"
+				},
+				{
+					"when": "editorFocus",
+					"command": "PrivateCodeTemplate.insertTemplate",
+					"group": "1_modification@4"
+				}
+			]
+		}
+	},
+
+
+	"scripts": {
+	"lint": "eslint .",
+	"pretest": "npm run lint",
+	"test": "vscode-test"
+	},
+	"devDependencies": {
+	"@types/vscode": "^1.60.0",
+	"@types/mocha": "^10.0.6",
+	"@types/node": "18.x",
+	"eslint": "^8.56.0",
+	"typescript": "^5.3.3",
+	"@vscode/test-cli": "^0.0.4",
+	"@vscode/test-electron": "^2.3.9"
+	}
+}

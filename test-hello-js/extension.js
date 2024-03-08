@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const fs = require('fs');
+const path = require('path');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -32,11 +34,13 @@ function activate(context) {
 	let helloWorld_4 = vscode.commands.registerCommand('test-hello-js.helloWorld4' , function(){
 		vscode.window.showInformationMessage('Hello World 4');
 	})
+	let readFileCmd = vscode.commands.registerCommand('test-hello-js.readFile' , readFile);
 
 	context.subscriptions.push(helloWorld_1);
 	context.subscriptions.push(helloWorld_2);
 	context.subscriptions.push(helloWorld_3);
 	context.subscriptions.push(helloWorld_4);
+	context.subscriptions.push(readFileCmd);
 }
 
 // This method is called when your extension is deactivated
@@ -65,6 +69,39 @@ function toLowerCaseOrUpperCase(command)
 		//替换原来文本
 		editor.edit((editBuilder) => {
 			editBuilder.replace(selection, newWord);
+		});
+	}
+}
+
+
+// 读取文件内容
+function readFile()
+{
+	// const filePath = '/Users/dsh/Documents/MyGit/VscodeProgram/test-hello-js/file/test.txt';
+	const filePath = path.join(__dirname, 'file', 'test.txt');
+	try {
+		const fileContent = fs.readFileSync(filePath, 'utf-8');
+		// return fileContent;
+		console.log(fileContent);
+		writeIn(fileContent)
+	} catch (error) {
+		console.error('读取文件出错:', error);
+		return null;
+	}
+}
+
+
+// 在当前选中位置写入字符串
+function writeIn(str)
+{
+	//获取activeTextEditor
+	const editor = vscode.window.activeTextEditor;
+	if (editor) 
+	{
+		const selection = editor.selection;
+		//替换原来文本
+		editor.edit((editBuilder) => {
+			editBuilder.replace(selection, str);
 		});
 	}
 }

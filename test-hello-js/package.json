@@ -29,6 +29,10 @@
       {
         "command": "test-hello-js.helloWorld4",
         "title": "Hello World 4"
+      },
+      {
+        "command": "test-hello-js.readFile",
+        "title": "Read File test.txt"
       }
     ],
     "configuration":[
@@ -40,49 +44,56 @@
             "default":"username",
             "description": "用户名"
           },
-          "test_Hello_js.shotTip":{
+          "test_Hello_js.showTip":{
             "type":"boolean",
             "default":true,
             "description": "启动时显示提示"
+          },
+		  "test_Hello_js.readFilePath":{
+            "type":"string",
+            "default":"",
+            "description": "读取文件的路径"
           }
         }
       }
     ],
-    "keybindings":{
-      "command": "test-hello-js.helloWorld",
-      "key": "alt+q",
-      "mac": "alt+q",
-      "when": "editorTextFocus"
-    },
+    "keybindings":[
+		{
+			"command": "test-hello-js.helloWorld",
+			"key": "alt+q",
+			"mac": "alt+q",
+			"when": "editorTextFocus"
+		},
+		{
+			"command": "test-hello-js.readFile",
+			"key": "alt+e",
+			"mac": "alt+e",
+			"when": "editorTextFocus"
+		}
+    ],
     "menus": {
-      "editor/context": [
-          {
-              "when": "editorFocus",
-              "command": "test-hello-js.helloWorld",
-              "group": "navigation@3"
-          },
-          {
-              "when": "editorFocus",
-              "command": "test-hello-js.helloWorld2",
-              "group": "navigation@4"
-          },
-          {
-              "when": "editorFocus && resourceLangId == lua",
-              "command": "test-hello-js.helloWorld3",
-              "group": "z_commands"
-          },
-          {
-              "command": "test-hello-js.helloWorld4",
-              "group": "navigation@7"
-          }
-      ]
-    },
-    "snippets": [
-      {
-        "language": "lua",
-        "path": "./snippets/lua.json"
-      }
-    ]
+		"editor/context": [
+			{
+				"when": "editorFocus",
+				"command": "test-hello-js.helloWorld",
+				"group": "navigation@3"
+			},
+			{
+				"when": "editorFocus",
+				"command": "test-hello-js.helloWorld2",
+				"group": "navigation@4"
+			},
+			{
+				"when": "editorFocus && resourceLangId == lua",
+				"command": "test-hello-js.helloWorld3",
+				"group": "z_commands"
+			},
+			{
+				"command": "test-hello-js.helloWorld4",
+				"group": "navigation@7"
+			}
+		]
+    }
   },
 
 

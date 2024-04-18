@@ -3,6 +3,7 @@
 	"displayName": "个人代码模板",
 	"description": "从设置的路径读取代码模板文件，并插入",
 	"version": "0.0.1",
+	"publisher": "Skyelfxxx",
 	"engines": {
 		"vscode": "^1.60.0"
 	},
